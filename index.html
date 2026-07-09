@@ -205,8 +205,8 @@
                 let targetAlpha = 0;
                 if (dist <= 25) {
                     targetAlpha = 1;
-                } else if (dist <= 150) {
-                    targetAlpha = 1 - (dist - 25) * (1 / (150 - 25));
+                } else if (dist <= 75) {
+                    targetAlpha = 1 - (dist - 25) * (1 / (75 - 25));
                 }
 
                 if (p.alpha < targetAlpha) {
