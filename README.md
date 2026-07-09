@@ -5,9 +5,11 @@ ARTWORKS FROM THIS REPOSITORY MAY BE USED AS BACKGROUNDS FOR LEVELS (CALLED "map
 
 IF YOU ARE THE ARTIST OF AN ARTWORK USED HERE, AND YOU DON'T AGREE TO THIS USAGE, PLEASE TELL ME SO I CAN TAKE THE ARTWORK DOWN.
 
-―――― [Lott](https://osu.ppy.sh/users/13821222)'s osu! background repository ――――
 
-view at https://lott-osu.github.io/lott-backgrounds/
+
+<h2 align="center">[Lott](https://osu.ppy.sh/users/13821222)'s osu! background repository ――――</h2>
+
+view the artworks at https://lott-osu.github.io/lott-backgrounds/
 
 
 
