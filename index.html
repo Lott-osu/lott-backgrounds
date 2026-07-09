@@ -193,6 +193,9 @@
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            const boxSize = 6;
+            const borderRadius = 2;
+
             for (let i = 0; i < points.length; i++) {
                 let p = points[i];
                 let dx = p.x - mouseX;
@@ -222,7 +225,7 @@
 
                 if (p.alpha > 0) {
                     ctx.beginPath();
-                    ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+                    ctx.roundRect(p.x - boxSize / 2, p.y - boxSize / 2, boxSize, boxSize, borderRadius);
                     ctx.fillStyle = `rgba(98, 204, 186, ${p.alpha})`;
                     ctx.fill();
                 }
