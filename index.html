@@ -157,7 +157,7 @@
         let mouseY = -1000;
         
         const maxalpha = 0.2;
-        const boxSize = 30;
+        const boxSize = 25;
         const borderRadius = 5;
 
         function resizeCanvas() {
@@ -205,8 +205,8 @@
                 let targetAlpha = 0;
                 if (dist <= 25) {
                     targetAlpha = 1;
-                } else if (dist <= 100) {
-                    targetAlpha = 1 - (dist - 25) * (100 - 25);
+                } else if (dist <= 175) {
+                    targetAlpha = 1 - (dist - 25) * (175 - 25);
                 }
 
                 if (p.alpha < targetAlpha) {
