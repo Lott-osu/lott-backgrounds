@@ -13,7 +13,7 @@
         }
         h1 { 
             text-align: center; 
-            color: #88CFCA; 
+            color: #62ccba; 
             margin-bottom: 2px; 
         }
         p { text-align: center; margin-top: 5px; }
@@ -38,6 +38,7 @@
             border: 1px solid #719da2;
             float: left;
             box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
         }
 
         .single-card-box:hover {
@@ -60,6 +61,7 @@
         .file-name-text {
             font-weight: bold;
             display: block;
+            text-align: center;
             width: 280px;
             white-space: nowrap;
             overflow: hidden;
@@ -75,7 +77,7 @@
             text-align: center;
             text-decoration: none;
             border-radius: 4px;
-            margin-top: 8px;
+            margin: 8px auto 0 auto;
             font-size: 12px;
             font-weight: bold;
         }
@@ -118,7 +120,7 @@
                         '<img class="img-style" src="' + currentImg.download_url + '" alt="image" loading="lazy">' +
                         '<div class="text-padding">' +
                             '<span class="file-name-text" title="' + currentImg.name + '">' + currentImg.name + '</span>' +
-                            '<a href="' + currentImg.download_url + '" target="_blank" class="my-btn" download>Download Raw (100%)</a>' +
+                            '<a href="' + currentImg.download_url + '" target="_blank" class="my-btn" download>Download</a>' +
                         '</div>' +
                     '</div>';
                 }
