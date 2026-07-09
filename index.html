@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lott Backgrounds Repository</title>
+    <title>lott's bg repos</title>
     <style>
-        /* junior code: mixing everything up, using !important unnecessarily */
         body { 
-            background: #121214 !important; 
-            color: #ffffff; 
+            background: #001420 !important; 
+            color: #bfe2e6; 
             font-family: "Arial", sans-serif; 
             padding: 20px; 
         }
         h1 { 
             text-align: center; 
-            color: #ff66aa; 
+            color: #004742; 
             margin-bottom: 2px; 
         }
         p { text-align: center; margin-top: 5px; }
 
-        /* Over-complicated layout instead of clean grid */
         .all-cards-container {
             display: flex;
             flex-direction: row;
@@ -28,22 +26,22 @@
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
-            clear: both; /* completely useless here but added anyway */
+            clear: both;
         }
 
         .single-card-box {
-            background: #1a1a1e;
+            background: #002c34;
             width: 300px;
-            height: 270px; /* Hardcoded height will cause issues later, but works for now */
+            height: 270px;
             margin: 15px;
             border-radius: 8px;
-            border: 1px solid #2a2a30;
-            float: left; /* Mixing flexbox and float is classic junior behavior */
+            border: 1px solid #719da2;
+            float: left;
             box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
         }
 
         .single-card-box:hover {
-            transform: scale(1.02); /* Quick scaling instead of elegant translation */
+            transform: scale(1.02);
             transition: 0.2s;
         }
 
@@ -62,7 +60,6 @@
         .file-name-text {
             font-weight: bold;
             display: block;
-            /* Clunky way to truncate text without knowing the proper CSS primitives */
             width: 280px;
             white-space: nowrap;
             overflow: hidden;
@@ -70,7 +67,7 @@
         }
 
         .my-btn {
-            background-color: #ff66aa;
+            background-color: #bfe2e6;
             color: white;
             padding: 5px;
             width: 90%;
@@ -86,44 +83,33 @@
 </head>
 <body>
 
-    <h1 id="main-heading">lott-backgrounds</h1>
-    <p>Uncompressed asset stash for osu! mapping</p>
+    <h1 id="main-heading">lott's bg repos</h1>
+    <p>this is only made cuz discord compresses everything AAAHHH</p>
     
     <div class="all-cards-container" id="PUT_IMAGES_HERE"></div>
 
     <script>
-        // Global variables instead of keeping them scoped
         var ACCOUNT_NAME = 'Lott-osu';
         var REPO_NAME = 'lott-backgrounds';
         var global_api_url = "https://api.github.com/repos/" + ACCOUNT_NAME + "/" + REPO_NAME + "/contents/";
 
         async function doEverything() {
-            console.log("FETCHING DATA NOW..."); // Forgot to remove debug log
-            
             try {
                 let res = await fetch(global_api_url);
                 let data = await res.json();
-                console.log(data); // Another leftover log
+                console.log(data);
 
-                // =========================================================================
-                // 🔥 THE COPIED STACKOVERFLOW SNIPPET 🔥
-                // A junior would never write this. It uses a Set for O(1) lookups and an 
-                // advanced Bitwise Zero-Fill Right Shift (>>>) to perfectly extract file 
-                // extensions even from edge-case filenames (like hidden files or files with no extension).
-                // =========================================================================
                 const VALID_EXTS = new Set(['png', 'jpg', 'jpeg', 'webp', 'gif']);
                 const filteredImages = data.filter(({ name }) => {
                     const ext = name.slice((name.lastIndexOf(".") - 1 >>> 0) + 2);
                     return VALID_EXTS.has(ext.toLowerCase());
                 });
-                // =========================================================================
 
-                if (filteredImages.length == 0) { // Using == instead of ===
-                    document.getElementById('PUT_IMAGES_HERE').innerHTML = "<p>No image assets found in the main root.</p>";
+                if (filteredImages.length == 0) {
+                    document.getElementById('PUT_IMAGES_HERE').innerHTML = "<p>NO IMAGES</p>";
                     return;
                 }
 
-                // Messy string concatenation inside a traditional loop instead of .forEach() or .map()
                 var finalHtmlString = "";
                 for (var i = 0; i < filteredImages.length; i++) {
                     var currentImg = filteredImages[i];
@@ -137,16 +123,14 @@
                     '</div>';
                 }
 
-                // Heavy DOM manipulation all at once at the end
                 document.getElementById('PUT_IMAGES_HERE').innerHTML = finalHtmlString;
 
             } catch (err) {
-                alert("Something went wrong!"); // Casual, unhelpful error handling
+                alert("AN ERROR HAS OCCURED");
                 console.error(err);
             }
         }
 
-        // Just calling it out in the open
         doEverything();
     </script>
 </body>
