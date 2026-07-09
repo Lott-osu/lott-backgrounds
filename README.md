@@ -7,7 +7,7 @@ IF YOU ARE THE ARTIST OF AN ARTWORK USED HERE, AND YOU DON'T AGREE TO THIS USAGE
 
 
 
-<h2 align="center">[Lott](https://osu.ppy.sh/users/13821222)'s osu! background repository ――――</h2>
+<h2 align="center"> Lott's osu! background repository ―――― </h2>
 
 view the artworks at https://lott-osu.github.io/lott-backgrounds/
 
@@ -18,3 +18,5 @@ this repository is mainly for myself, but other mappers may yoink stuff here too
 99.9% of artwork here is furry-based
 
 all are completely SFW sexually (no innuendos, minimal body-showing), but some may be disturbing (violence, sensitive topics, etc.), proceed with caution
+
+made by [Lott](https://osu.ppy.sh/users/13821222)
