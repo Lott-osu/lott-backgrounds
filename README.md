@@ -7,7 +7,7 @@ IF YOU ARE THE ARTIST OF AN ARTWORK USED HERE, AND YOU DON'T AGREE TO THIS USAGE
 
 
 
-<h2 align="center"> Lott's osu! background repository ―――― </h2>
+<h2 align="center"> Lott's osu! background repository</h2>
 
 view the artworks at https://lott-osu.github.io/lott-backgrounds/
 
