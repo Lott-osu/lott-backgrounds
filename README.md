@@ -23,4 +23,4 @@ all are completely SFW sexually (no innuendos, minimal body-showing), but some m
 
 <p align="center">――――――――――――――――――――――――――</p>
 
-<p align="right">made by Lott</p>
+<p align="right">**made by Lott**</p>
