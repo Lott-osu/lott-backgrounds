@@ -1,7 +1,7 @@
 # Lott's osu! background repository
 <p align="center">view the artworks at https://lott-osu.github.io/lott-backgrounds/</p>
 
-<div align="center">――――――――――――――――――――――――――
+<div align="center">―― ✦ ――
 
 ㅤ
 
@@ -13,7 +13,7 @@ IF YOU ARE THE ARTIST OF AN ARTWORK USED HERE, AND YOU DON'T AGREE TO THIS USAGE
 
 ㅤ</div>
 
-<p align="center">――――――――――――――――――――――――――</p>
+<p align="center">―― ✦ ――</p>
 
 this repository is mainly for myself, but other mappers may yoink stuff here too
 
@@ -21,6 +21,6 @@ this repository is mainly for myself, but other mappers may yoink stuff here too
 
 all are completely SFW sexually (no innuendos, minimal body-showing), but some may be disturbing (violence, sensitive topics, etc.), proceed with caution
 
-<p align="center">――――――――――――――――――――――――――</p>
+<p align="center">―― ✦ ――</p>
 
 <p align="right"><b>made by Lott</b></p>
