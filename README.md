@@ -1,0 +1,2 @@
+# lott-backgrounds
+FUCK COMPRESSION
