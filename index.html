@@ -71,16 +71,6 @@
             padding: 10px;
         }
 
-        .file-name-text {
-            font-weight: bold;
-            display: block;
-            text-align: center;
-            width: 280px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
         .my-btn {
             background-color: #004742;
             color: white;
@@ -90,7 +80,7 @@
             text-align: center;
             text-decoration: none;
             border-radius: 4px;
-            margin: 8px auto 0 auto;
+            margin: 4px auto 0 auto;
             font-size: 12px;
             font-weight: bold;
         }
@@ -131,11 +121,23 @@
                 for (var i = 0; i < filteredImages.length; i++) {
                     var currentImg = filteredImages[i];
                     
+                    var sourceUrl = currentImg.download_url;
+                    var nameWithoutExt = currentImg.name.substring(0, currentImg.name.lastIndexOf('.'));
+                    var parts = nameWithoutExt.split('_');
+                    
+                    if (parts[0] === 'bsky' && parts.length >= 3) {
+                        sourceUrl = 'https://bsky.app/profile/' + parts[1] + '/post/' + parts[2];
+                    } else if ((parts[0] === 'twitter' || parts[0] === 'x') && parts.length >= 3) {
+                        sourceUrl = 'https://x.com/' + parts[1] + '/status/' + parts[2];
+                    } else if (parts[0] === 'pixiv' && parts.length >= 2) {
+                        sourceUrl = 'https://www.pixiv.net/artworks/' + parts[1];
+                    }
+                    
                     finalHtmlString += '<div class="single-card-box">' +
                         '<img class="img-style" src="' + currentImg.download_url + '" alt="image" loading="lazy">' +
                         '<div class="text-padding">' +
-                            '<span class="file-name-text" title="' + currentImg.name + '">' + currentImg.name + '</span>' +
                             '<a href="' + currentImg.download_url + '" target="_blank" class="my-btn" download>view image</a>' +
+                            '<a href="' + sourceUrl + '" target="_blank" class="my-btn" style="background-color: #005a52; margin-top: 6px;">view source</a>' +
                         '</div>' +
                     '</div>';
                 }
@@ -157,8 +159,8 @@
         let mouseY = -1000;
         
         const maxalpha = 0.2;
-        const minalpha = 0.025;
-        const animationDuration = 0.75;
+        const minalpha = 0.05;
+        const animationDuration = 1.0;
         const boxSize = 25;
         const borderRadius = 5;
 
@@ -230,7 +232,7 @@
                 if (finalOpacity > 0) {
                     ctx.beginPath();
                     ctx.roundRect(p.x - boxSize / 2, p.y - boxSize / 2, boxSize, boxSize, borderRadius);
-                    ctx.fillStyle = `rgba(98, 186, 204, ${finalOpacity})`;
+                    ctx.fillStyle = `rgba(98, 204, 186, ${finalOpacity})`;
                     ctx.fill();
                 }
             }
