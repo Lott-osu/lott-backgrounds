@@ -5,68 +5,149 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lott Backgrounds Repository</title>
     <style>
-        body { font-family: sans-serif; background: #121214; color: #fff; padding: 20px; text-align: center; }
-        h1 { margin-bottom: 5px; color: #ff66aa; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 20px; max-width: 1400px; margin: 0 auto; }
-        .card { background: #1a1a1e; border-radius: 8px; overflow: hidden; border: 1px solid #2a2a30; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s; position: relative; }
-        .card:hover { transform: translateY(-3px); }
-        .card img { width: 100%; height: 180px; object-fit: cover; display: block; background: #222; }
-        .info { padding: 12px; font-size: 14px; display: flex; flex-direction: column; gap: 8px; }
-        .filename { text-overflow: ellipsis; overflow: hidden; white-space: nowrap; font-weight: bold; color: #eee; }
-        .btn { display: inline-block; background: #ff66aa; color: white; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 12px; transition: background 0.2s; }
-        .btn:hover { background: #e04488; }
+        /* junior code: mixing everything up, using !important unnecessarily */
+        body { 
+            background: #121214 !important; 
+            color: #ffffff; 
+            font-family: "Arial", sans-serif; 
+            padding: 20px; 
+        }
+        h1 { 
+            text-align: center; 
+            color: #ff66aa; 
+            margin-bottom: 2px; 
+        }
+        p { text-align: center; margin-top: 5px; }
+
+        /* Over-complicated layout instead of clean grid */
+        .all-cards-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            clear: both; /* completely useless here but added anyway */
+        }
+
+        .single-card-box {
+            background: #1a1a1e;
+            width: 300px;
+            height: 270px; /* Hardcoded height will cause issues later, but works for now */
+            margin: 15px;
+            border-radius: 8px;
+            border: 1px solid #2a2a30;
+            float: left; /* Mixing flexbox and float is classic junior behavior */
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .single-card-box:hover {
+            transform: scale(1.02); /* Quick scaling instead of elegant translation */
+            transition: 0.2s;
+        }
+
+        .img-style {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .text-padding {
+            padding: 10px;
+        }
+
+        .file-name-text {
+            font-weight: bold;
+            display: block;
+            /* Clunky way to truncate text without knowing the proper CSS primitives */
+            width: 280px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .my-btn {
+            background-color: #ff66aa;
+            color: white;
+            padding: 5px;
+            width: 90%;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-    <h1>lott-backgrounds</h1>
+    <h1 id="main-heading">lott-backgrounds</h1>
     <p>Uncompressed asset stash for osu! mapping</p>
     
-    <div class="grid" id="gallery"><!-- Images load here --></div>
+    <div class="all-cards-container" id="PUT_IMAGES_HERE"></div>
 
     <script>
-        // Adjust these variables to match your account
-        const username = 'Lott-osu';
-        const repo = 'lott-backgrounds';
+        // Global variables instead of keeping them scoped
+        var ACCOUNT_NAME = 'Lott-osu';
+        var REPO_NAME = 'lott-backgrounds';
+        var global_api_url = "https://api.github.com/repos/" + ACCOUNT_NAME + "/" + REPO_NAME + "/contents/";
 
-        async function loadGallery() {
-            const gallery = document.getElementById('gallery');
+        async function doEverything() {
+            console.log("FETCHING DATA NOW..."); // Forgot to remove debug log
+            
             try {
-                // Fetches file tree directly from GitHub's public API
-                const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/`);
-                const files = await response.json();
-                
-                // Filter files to only show common image extensions
-                const imageExtensions = ['.png', '.jpg', '.jpeg', '.webp', '.gif'];
-                const images = files.filter(file => 
-                    imageExtensions.some(ext => file.name.toLowerCase().endsWith(ext))
-                );
+                let res = await fetch(global_api_url);
+                let data = await res.json();
+                console.log(data); // Another leftover log
 
-                if(images.length === 0) {
-                    gallery.innerHTML = '<p>No image assets found in the main root.</p>';
+                // =========================================================================
+                // 🔥 THE COPIED STACKOVERFLOW SNIPPET 🔥
+                // A junior would never write this. It uses a Set for O(1) lookups and an 
+                // advanced Bitwise Zero-Fill Right Shift (>>>) to perfectly extract file 
+                // extensions even from edge-case filenames (like hidden files or files with no extension).
+                // =========================================================================
+                const VALID_EXTS = new Set(['png', 'jpg', 'jpeg', 'webp', 'gif']);
+                const filteredImages = data.filter(({ name }) => {
+                    const ext = name.slice((name.lastIndexOf(".") - 1 >>> 0) + 2);
+                    return VALID_EXTS.has(ext.toLowerCase());
+                });
+                // =========================================================================
+
+                if (filteredImages.length == 0) { // Using == instead of ===
+                    document.getElementById('PUT_IMAGES_HERE').innerHTML = "<p>No image assets found in the main root.</p>";
                     return;
                 }
 
-                gallery.innerHTML = '';
-                images.forEach(img => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.innerHTML = `
-                        <img src="${img.download_url}" alt="${img.name}" loading="lazy">
-                        <div class="info">
-                            <span class="filename" title="${img.name}">${img.name}</span>
-                            <a href="${img.download_url}" target="_blank" class="btn" download>Download Raw (100%)</a>
-                        </div>
-                    `;
-                    gallery.appendChild(card);
-                });
-            } catch (error) {
-                console.error(error);
-                gallery.innerHTML = '<p style="color: red;">Error parsing repository content dynamically.</p>';
+                // Messy string concatenation inside a traditional loop instead of .forEach() or .map()
+                var finalHtmlString = "";
+                for (var i = 0; i < filteredImages.length; i++) {
+                    var currentImg = filteredImages[i];
+                    
+                    finalHtmlString += '<div class="single-card-box">' +
+                        '<img class="img-style" src="' + currentImg.download_url + '" alt="image" loading="lazy">' +
+                        '<div class="text-padding">' +
+                            '<span class="file-name-text" title="' + currentImg.name + '">' + currentImg.name + '</span>' +
+                            '<a href="' + currentImg.download_url + '" target="_blank" class="my-btn" download>Download Raw (100%)</a>' +
+                        '</div>' +
+                    '</div>';
+                }
+
+                // Heavy DOM manipulation all at once at the end
+                document.getElementById('PUT_IMAGES_HERE').innerHTML = finalHtmlString;
+
+            } catch (err) {
+                alert("Something went wrong!"); // Casual, unhelpful error handling
+                console.error(err);
             }
         }
 
-        loadGallery();
+        // Just calling it out in the open
+        doEverything();
     </script>
 </body>
 </html>
