@@ -157,7 +157,7 @@
         let mouseY = -1000;
         
         const maxalpha = 0.2;
-        const minalpha = 0.05;
+        const minalpha = 0.025;
         const animationDuration = 0.75;
         const boxSize = 25;
         const borderRadius = 5;
@@ -230,7 +230,7 @@
                 if (finalOpacity > 0) {
                     ctx.beginPath();
                     ctx.roundRect(p.x - boxSize / 2, p.y - boxSize / 2, boxSize, boxSize, borderRadius);
-                    ctx.fillStyle = `rgba(98, 204, 186, ${finalOpacity})`;
+                    ctx.fillStyle = `rgba(98, 186, 204, ${finalOpacity})`;
                     ctx.fill();
                 }
             }
