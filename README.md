@@ -13,6 +13,8 @@ IF YOU ARE THE ARTIST OF AN ARTWORK USED HERE, AND YOU DON'T AGREE TO THIS USAGE
 
 
 
+
+
 this repository is mainly for myself, but other mappers may yoink stuff here too
 
 99.9% of artwork here is furry-based
