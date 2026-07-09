@@ -80,7 +80,7 @@
             text-align: center;
             text-decoration: none;
             border-radius: 4px;
-            margin: 4px auto 0 auto;
+            margin: 8px auto 0 auto;
             font-size: 12px;
             font-weight: bold;
         }
@@ -121,23 +121,15 @@
                 for (var i = 0; i < filteredImages.length; i++) {
                     var currentImg = filteredImages[i];
                     
-                    var sourceUrl = currentImg.download_url;
-                    var nameWithoutExt = currentImg.name.substring(0, currentImg.name.lastIndexOf('.'));
-                    var parts = nameWithoutExt.split('_');
-                    
-                    if (parts[0] === 'bsky' && parts.length >= 3) {
-                        sourceUrl = 'https://bsky.app/profile/' + parts[1] + '/post/' + parts[2];
-                    } else if ((parts[0] === 'twitter' || parts[0] === 'x') && parts.length >= 3) {
-                        sourceUrl = 'https://x.com/' + parts[1] + '/status/' + parts[2];
-                    } else if (parts[0] === 'pixiv' && parts.length >= 2) {
-                        sourceUrl = 'https://www.pixiv.net/artworks/' + parts[1];
-                    }
-                    
+                    var lastDot = currentImg.name.lastIndexOf('.');
+                    var nameNoExt = lastDot !== -1 ? currentImg.name.substring(0, lastDot) : currentImg.name;
+                    var sourceUrl = 'https://' + nameNoExt.replace(/_/g, '/');
+
                     finalHtmlString += '<div class="single-card-box">' +
                         '<img class="img-style" src="' + currentImg.download_url + '" alt="image" loading="lazy">' +
                         '<div class="text-padding">' +
                             '<a href="' + currentImg.download_url + '" target="_blank" class="my-btn" download>view image</a>' +
-                            '<a href="' + sourceUrl + '" target="_blank" class="my-btn" style="background-color: #005a52; margin-top: 6px;">view source</a>' +
+                            '<a href="' + sourceUrl + '" target="_blank" class="my-btn">view source</a>' +
                         '</div>' +
                     '</div>';
                 }
